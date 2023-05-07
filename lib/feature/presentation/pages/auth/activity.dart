@@ -6,18 +6,28 @@ import '../../../../index.dart';
 class AuthActivity extends StatelessWidget {
   static const String route = "auth";
   static const String title = "Auth";
+  final AuthFragmentType? type;
 
-  const AuthActivity({Key? key}) : super(key: key);
+  const AuthActivity({
+    Key? key,
+    required this.type,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
         create: (context) => di<AuthController>(),
-        child: const AuthBody(
-          type: AuthBodyType.signIn,
+        child: AuthFragment(
+          type: type ?? AuthFragmentType.signIn,
         ),
       ),
     );
   }
+}
+
+enum AuthFragmentType {
+  signIn,
+  signUp,
+  forgotPassword,
 }

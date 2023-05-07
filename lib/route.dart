@@ -12,7 +12,7 @@ class AppRouter {
     final data = settings.arguments;
     switch (AppRoutes.from(route)) {
       case AppRoutes.initial:
-        return _initial(data);
+        return _auth(data);
       case AppRoutes.home:
         return _home(data);
       default:
@@ -20,9 +20,11 @@ class AppRouter {
     }
   }
 
-  Route<T> _initial<T>(dynamic data) {
+  Route<T> _auth<T>(dynamic data) {
     return MaterialPageRoute(
-      builder: (context) => const AuthActivity(),
+      builder: (context) => AuthActivity(
+        type: data is AuthFragmentType ? data : null,
+      ),
     );
   }
 
