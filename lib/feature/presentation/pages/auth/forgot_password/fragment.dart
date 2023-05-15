@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_andomie/core.dart';
+import 'package:flutter_andomie/widgets.dart';
 
 import '../../../../../index.dart';
 
@@ -36,45 +38,41 @@ class _AuthForgotPasswordFragmentState
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 32,
-          vertical: 24,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const TextView(
-              width: double.infinity,
-              text: "Forgot password",
-              textAlign: TextAlign.start,
-              textColor: Colors.black,
-              textStyle: FontWeight.bold,
-              textSize: 24,
-              margin: EdgeInsets.symmetric(vertical: 24),
-            ),
-            EmailField(
-              hint: "Enter your email",
-              controller: email,
-            ),
-            PhoneField(
-              controller: phone,
-              textCode: "+880",
-              hintCode: "+880",
-              hintNumber: "Enter phone number",
-            ),
-            Button(
-              margin: const EdgeInsets.symmetric(vertical: 24),
-              text: "Find",
-              borderRadius: 12,
-              primary: AppColors.primary,
-              onExecute: () => widget.onForgot.call(AuthData(
-                email: email.text,
-                phoneNumber: phone.number.numberWithCode,
-              )),
-            ),
-          ],
-        ),
+      child: LinearLayout(
+        orientation: Axis.vertical,
+        paddingVertical: 24,
+        paddingHorizontal: 32,
+        children: [
+          const TextView(
+            width: double.infinity,
+            text: "Forgot password",
+            textAlign: TextAlign.start,
+            textColor: Colors.black,
+            fontWeight: FontWeight.bold,
+            textSize: 24,
+            marginVertical: 24,
+          ),
+          EmailField(
+            hint: "Enter your email",
+            controller: email,
+          ),
+          PhoneField(
+            controller: phone,
+            textCode: "+880",
+            hintCode: "+880",
+            hintNumber: "Enter phone number",
+          ),
+          Button(
+            margin: const EdgeInsets.symmetric(vertical: 24),
+            text: "Find",
+            borderRadius: 12,
+            primary: AppColors.primary,
+            onExecute: () => widget.onForgot.call(UserEntity(
+              email: email.text,
+              phone: phone.number.numberWithCode,
+            )),
+          ),
+        ],
       ),
     );
   }

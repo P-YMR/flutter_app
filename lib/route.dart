@@ -10,14 +10,22 @@ class AppRouter {
   Route<T> generate<T>(RouteSettings settings) {
     final route = settings.name;
     final data = settings.arguments;
-    switch (AppRoutes.from(route)) {
-      case AppRoutes.initial:
+    switch (route) {
+      case SplashActivity.route:
+        return _splash(data);
+      case AuthActivity.route:
         return _auth(data);
-      case AppRoutes.home:
+      case HomeActivity.route:
         return _home(data);
       default:
         return _error(data);
     }
+  }
+
+  Route<T> _splash<T>(dynamic data) {
+    return MaterialPageRoute(
+      builder: (context) => const SplashActivity(),
+    );
   }
 
   Route<T> _auth<T>(dynamic data) {

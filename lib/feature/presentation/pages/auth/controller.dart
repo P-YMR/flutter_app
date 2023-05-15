@@ -1,17 +1,22 @@
-import '../../../../index.dart';
+import 'package:flutter_andomie/core.dart';
 
-class AuthController extends CubitController {
-  AuthController();
+class AppAuthController extends AuthController {
+  AppAuthController({
+    required super.handler,
+    required super.userHandler,
+  });
 
-  Future<bool> signIn(AuthData data) async {
+  Future<bool> signIn(UserEntity data) async {
+    await signInByEmail(data);
     return true;
   }
 
-  Future<bool> signUp(AuthData data) async {
+  Future<bool> signUp(UserEntity data) async {
+    await signUpByEmail(data);
     return true;
   }
 
-  Future<bool> forgot(AuthData data) async {
+  Future<bool> forgot(UserEntity data) async {
     return true;
   }
 }

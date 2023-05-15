@@ -13,7 +13,7 @@ class HomeActivity extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => di<HomeController>(),
+        create: (context) => locator<HomeController>(),
         child: const HomeBody(
           type: HomeBodyType.initial,
         ),

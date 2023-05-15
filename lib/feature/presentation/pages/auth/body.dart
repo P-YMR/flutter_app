@@ -10,19 +10,19 @@ typedef AuthForgotHandler = Function(UserEntity data);
 typedef AuthSignInHandler = Function(UserEntity data);
 typedef AuthSignUpHandler = Function(UserEntity data);
 
-class AuthFragment extends StatefulWidget {
+class AuthBody extends StatefulWidget {
   final AuthFragmentType type;
 
-  const AuthFragment({
+  const AuthBody({
     Key? key,
     required this.type,
   }) : super(key: key);
 
   @override
-  State<AuthFragment> createState() => _AuthFragmentState();
+  State<AuthBody> createState() => _AuthBodyState();
 }
 
-class _AuthFragmentState extends State<AuthFragment> {
+class _AuthBodyState extends State<AuthBody> {
   late AppAuthController controller;
 
   @override

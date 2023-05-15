@@ -17,8 +17,8 @@ class AuthActivity extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => di<AuthController>(),
-        child: AuthFragment(
+        create: (context) => locator<AppAuthController>(),
+        child: AuthBody(
           type: type ?? AuthFragmentType.signIn,
         ),
       ),

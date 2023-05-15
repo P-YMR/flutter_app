@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_andomie/core.dart';
+import 'package:flutter_andomie/widgets.dart';
 
 import '../../../../../index.dart';
 
@@ -39,64 +41,60 @@ class _AuthSignUpFragmentState extends State<AuthSignUpFragment> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 32,
-          vertical: 24,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const TextView(
-              width: double.infinity,
-              text: "Create a new account",
-              textAlign: TextAlign.start,
-              textColor: Colors.black,
-              textStyle: FontWeight.bold,
-              textSize: 24,
-              margin: EdgeInsets.symmetric(vertical: 24),
-            ),
-            EmailField(
-              hint: "Enter your email",
-              controller: email,
-            ),
-            PhoneField(
-              controller: phone,
-              textCode: "+880",
-              hintCode: "+880",
-              hintNumber: "Enter phone number",
-            ),
-            PasswordField(
-              hint: "Enter your password",
-              controller: password,
-              margin: EdgeInsets.zero,
-            ),
-            CreateAccountTextView(
-              width: double.infinity,
-              textAlign: TextAlign.end,
-              padding: const EdgeInsets.all(8),
-              text: "Already have an account! ",
-              buttonText: "Sign in",
-              buttonTextColor: AppColors.primary,
-              onPressed: () => widget.onSignIn(AuthData(
-                email: email.text,
-                password: password.text,
-                phoneNumber: phone.number.numberWithCode,
-              )),
-            ),
-            Button(
-              margin: const EdgeInsets.symmetric(vertical: 24),
-              text: "Register",
-              borderRadius: 12,
-              primary: AppColors.primary,
-              onExecute: () => widget.onSignUp.call(AuthData(
-                email: email.text,
-                password: password.text,
-                phoneNumber: phone.number.numberWithCode,
-              )),
-            ),
-          ],
-        ),
+      child: LinearLayout(
+        orientation: Axis.vertical,
+        paddingVertical: 24,
+        paddingHorizontal: 32,
+        children: [
+          const TextView(
+            width: double.infinity,
+            text: "Create a new account",
+            textAlign: TextAlign.start,
+            textColor: Colors.black,
+            fontWeight: FontWeight.bold,
+            textSize: 24,
+            marginVertical: 24,
+          ),
+          EmailField(
+            hint: "Enter your email",
+            controller: email,
+          ),
+          PhoneField(
+            controller: phone,
+            textCode: "+880",
+            hintCode: "+880",
+            hintNumber: "Enter phone number",
+          ),
+          PasswordField(
+            hint: "Enter your password",
+            controller: password,
+            margin: EdgeInsets.zero,
+          ),
+          CreateAccountTextView(
+            width: double.infinity,
+            textAlign: TextAlign.end,
+            padding: const EdgeInsets.all(8),
+            text: "Already have an account! ",
+            buttonText: "Sign in",
+            buttonTextColor: AppColors.primary,
+            onPressed: () => widget.onSignIn(UserEntity(
+              email: email.text,
+              password: password.text,
+              phone: phone.number.numberWithCode,
+            )),
+          ),
+          Button(
+            margin: const EdgeInsets.symmetric(vertical: 24),
+            text: "Register",
+            borderRadius: 12,
+            primary: AppColors.primary,
+            onExecute: () => widget.onSignUp.call(UserEntity(
+              email: email.text,
+              password: password.text,
+              phone: phone.number.numberWithCode,
+            )),
+          ),
+        ],
       ),
     );
   }
